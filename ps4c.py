@@ -90,7 +90,7 @@ class SubMessage(object):
         '''
         copy_valid_words = self.valid_words
         return copy_valid_words
-                
+
     def build_transpose_dict(self, vowels_permutation):
         '''
         vowels_permutation (string): a string containing a permutation of vowels (a, e, i, o, u)
@@ -131,7 +131,8 @@ class SubMessage(object):
         '''
         
         pass #delete this line and replace with your code here
-        
+
+
 class EncryptedSubMessage(SubMessage):
     def __init__(self, text):
         '''
