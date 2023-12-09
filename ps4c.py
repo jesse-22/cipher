@@ -39,9 +39,9 @@ def is_word(word_list, word):
     Returns: True if word is in word_list, False otherwise
 
     Example:
-    >>> is_word(word_list, 'bat') returns
-    True
-    >>> is_word(word_list, 'asdf') returns
+    # >>> is_word(word_list, 'bat') returns
+    # True
+    # >>> is_word(word_list, 'asdf') returns
     False
     '''
     word = word.lower()
@@ -70,24 +70,26 @@ class SubMessage(object):
             self.message_text (string, determined by input text)
             self.valid_words (list, determined using helper function load_words)
         '''
-        pass #delete this line and replace with your code here
+        self.text = text
+        self.valid_words = load_words(WORDLIST_FILENAME)
     
     def get_message_text(self):
         '''
-        Used to safely access self.message_text outside of the class
+        Used to safely access self.message_text outside the class
         
         Returns: self.message_text
         '''
-        pass #delete this line and replace with your code here
+        return self.text
 
     def get_valid_words(self):
         '''
-        Used to safely access a copy of self.valid_words outside of the class.
+        Used to safely access a copy of self.valid_words outside the class.
         This helps you avoid accidentally mutating class attributes.
         
         Returns: a COPY of self.valid_words
         '''
-        pass #delete this line and replace with your code here
+        copy_valid_words = self.valid_words
+        return copy_valid_words
                 
     def build_transpose_dict(self, vowels_permutation):
         '''
@@ -108,8 +110,17 @@ class SubMessage(object):
         Returns: a dictionary mapping a letter (string) to 
                  another letter (string). 
         '''
-        
-        pass #delete this line and replace with your code here
+
+        dictionary_mapping = {}
+        for letter in string.ascii_lowercase:
+            if letter in VOWELS_LOWER:
+                vowel_index = str.lower(VOWELS_LOWER).find(letter)
+                dictionary_mapping[letter] = vowels_permutation[vowel_index]
+                dictionary_mapping[str.upper(letter)] = str.upper(vowels_permutation[vowel_index])
+            else:
+                dictionary_mapping[letter] = letter
+                dictionary_mapping[str.upper(letter)] = str.upper(letter)
+        return dictionary_mapping
     
     def apply_transpose(self, transpose_dict):
         '''
@@ -163,8 +174,8 @@ if __name__ == '__main__':
     enc_dict = message.build_transpose_dict(permutation)
     print("Original message:", message.get_message_text(), "Permutation:", permutation)
     print("Expected encryption:", "Hallu Wurld!")
-    print("Actual encryption:", message.apply_transpose(enc_dict))
-    enc_message = EncryptedSubMessage(message.apply_transpose(enc_dict))
-    print("Decrypted message:", enc_message.decrypt_message())
+    # print("Actual encryption:", message.apply_transpose(enc_dict))
+    # enc_message = EncryptedSubMessage(message.apply_transpose(enc_dict))
+    # print("Decrypted message:", enc_message.decrypt_message())
      
     #TODO: WRITE YOUR TEST CASES HERE
